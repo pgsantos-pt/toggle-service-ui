@@ -26,7 +26,7 @@ export default class CreateToggle extends Component {
         console.log(`Toggle Name: ${this.state.toggle_name}`);
 
         const newToggle = {
-            toggle_name: this.state.toggle_name,
+            name: this.state.toggle_name
         };
 
         axios.post('http://localhost:8080/toggles', newToggle)
@@ -35,6 +35,8 @@ export default class CreateToggle extends Component {
         this.setState({
             toggle_name: ''
         })
+
+        this.props.history.push('/');
     }
 
     render() {
@@ -45,7 +47,7 @@ export default class CreateToggle extends Component {
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label>Toggle name: </label>
-                        <input  type="text"
+                        <input type="text"
                                 className="form-control"
                                 value={this.state.toggle_name}
                                 onChange={this.onChangeToggleName}/>

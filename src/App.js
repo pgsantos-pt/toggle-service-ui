@@ -19,15 +19,15 @@ class App extends Component {
                                 <Link to="/" className="nav-link">Toggles</Link>
                             </li>
                             <li className="navbar-item">
-                                <Link to="/create" className="nav-link">Create Toggle</Link>
+                                <Link to="/createToggle" className="nav-link">Create Toggle</Link>
                             </li>
                         </ul>
                     </div>
                 </nav>
                 <br/>
                 <Route path="/" exact component={TogglesList} />
-                <Route path="/edit/:id" component={EditToggle} />
-                <Route path="/create" component={CreateToggle} />
+                <Route path="/editToggle/:id" component={EditToggle} />
+                <Route path="/createToggle" component={CreateToggle} />
             </div>
         </Router>
     );

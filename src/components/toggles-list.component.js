@@ -4,9 +4,9 @@ import axios from 'axios';
 
 const Toggle = props => (
     <tr>
-        <td>{props.toggle.toggle_name}</td>
+        <td>{props.toggle.toggleName}</td>
         <td>
-            <Link to={"/edit/"+props.toggle._id}>Edit</Link>
+            <Link to={"/editToggle/"+props.toggle.toggleId}>Edit</Link>
         </td>
     </tr>
 )
@@ -40,7 +40,8 @@ export default class TogglesList extends Component {
                 <table className="table table-striped" style={{ marginTop: 20 }} >
                     <thead>
                     <tr>
-                        <th>Name</th>
+                        <th>Toggle Name</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
