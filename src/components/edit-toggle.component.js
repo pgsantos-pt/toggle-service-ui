@@ -44,9 +44,10 @@ export default class EditToggle extends Component {
         console.log(updateToggle);
 
         axios.put('http://localhost:8080/toggles/'+this.props.match.params.id, updateToggle)
-            .then(res => console.log(res.data));
-
-        this.props.history.push('/');
+            .then(res => {
+                console.log(res.data);
+                this.props.history.push('/');
+            });
     }
 
     render() {
