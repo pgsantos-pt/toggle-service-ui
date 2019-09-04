@@ -4,7 +4,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import CreateToggle from "./components/create-toggle.component";
 import EditToggle from "./components/edit-toggle.component";
+import DeleteToggle from "./components/delete-toggle.component";
 import TogglesList from "./components/toggles-list.component";
+import AssignmentsList from "./components/assignments-list.component";
 
 class App extends Component {
   render() {
@@ -25,9 +27,11 @@ class App extends Component {
                     </div>
                 </nav>
                 <br/>
-                <Route path="/" exact component={TogglesList} />
-                <Route path="/editToggle/:id" component={EditToggle} />
-                <Route path="/createToggle" component={CreateToggle} />
+                <Route path="/" exact component={TogglesList}/>
+                <Route path="/createToggle" component={CreateToggle}/>
+                <Route path="/editToggle/:id" component={EditToggle}/>
+                <Route path="/deleteToggle/:id" component={DeleteToggle}/>
+                <Route path="/assignmentsList/:id" component={AssignmentsList}/>
             </div>
         </Router>
     );

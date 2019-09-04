@@ -22,9 +22,6 @@ export default class CreateToggle extends Component {
     onSubmit(e) {
         e.preventDefault();
 
-        console.log(`Form submitted:`);
-        console.log(`Toggle Name: ${this.state.toggle_name}`);
-
         const newToggle = {
             name: this.state.toggle_name
         };
@@ -33,7 +30,10 @@ export default class CreateToggle extends Component {
             .then(res => {
                 console.log(res.data);
                 this.props.history.push('/');
-            });
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
 
         this.setState({
             toggle_name: ''
@@ -54,7 +54,7 @@ export default class CreateToggle extends Component {
                                 onChange={this.onChangeToggleName}/>
                     </div>
                     <div className="form-group">
-                        <input type="submit" value="Create Toggle" className="btn btn-primary" />
+                        <input type="submit" value="Create" className="btn btn-primary" />
                     </div>
                 </form>
             </div>

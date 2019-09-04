@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-export default class EditToggle extends Component {
+export default class DeleteToggle extends Component {
     constructor(props) {
         super(props);
 
-        this.onChangeToggleName = this.onChangeToggleName.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.onCancel = this.onCancel.bind(this);
 
         this.state = {
             toggle_name: ''
@@ -25,22 +25,10 @@ export default class EditToggle extends Component {
             })
     }
 
-    onChangeToggleName(e) {
-        this.setState({
-            toggle_name: e.target.value
-        });
-    }
-
     onSubmit(e) {
         e.preventDefault();
 
-        const updateToggle = {
-            name: this.state.toggle_name
-        };
-
-        console.log(updateToggle);
-
-        axios.put('http://localhost:8080/toggles/'+this.props.match.params.id, updateToggle)
+        axios.delete('http://localhost:8080/toggles/'+this.props.match.params.id)
             .then(res => {
                 console.log(res.data);
                 this.props.history.push('/');
@@ -51,21 +39,22 @@ export default class EditToggle extends Component {
         });
     }
 
+    onCancel(e) {
+        this.props.history.push('/');
+    }
+
     render() {
         return (
             <div style={{marginTop: 10}}>
-                <h3>Edit Toggle</h3>
+                <h3>Delete Toggle</h3>
                 <br/>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
-                        <label>Toggle name: </label>
-                        <input type="text"
-                                className="form-control"
-                                value={this.state.toggle_name}
-                                onChange={this.onChangeToggleName}/>
+                        <label>Are you sure you want to delete toggle '{this.state.toggle_name}'?</label>
                     </div>
                     <div className="form-group">
-                        <input type="submit" value="Update" className="btn btn-primary" />
+                        <input type="submit" value="Delete" className="btn btn-primary" style={{marginRight: 20}} />
+                        <input type="button" value="Cancel" className="btn btn-secondary" onClick={this.onCancel}/>
                     </div>
                 </form>
             </div>
