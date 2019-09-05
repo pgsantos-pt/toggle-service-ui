@@ -7,6 +7,10 @@ import EditToggle from "./components/edit-toggle.component";
 import DeleteToggle from "./components/delete-toggle.component";
 import TogglesList from "./components/toggles-list.component";
 import AssignmentsList from "./components/assignments-list.component";
+import CreateAssignment from "./components/create-assignment.component";
+import EditAssignment from "./components/edit-assignment.component";
+import DeleteAssignment from "./components/delete-assignment.component";
+import SearchAssignmentsList from "./components/search-assignments-list.component";
 
 class App extends Component {
   render() {
@@ -21,17 +25,24 @@ class App extends Component {
                                 <Link to="/" className="nav-link">Toggles</Link>
                             </li>
                             <li className="navbar-item">
-                                <Link to="/createToggle" className="nav-link">Create Toggle</Link>
+                                <Link to="/create-toggle" className="nav-link">Create Toggle</Link>
+                            </li>
+                            <li className="navbar-item">
+                                <Link to="/search-toggles" className="nav-link">Search Toggles</Link>
                             </li>
                         </ul>
                     </div>
                 </nav>
                 <br/>
                 <Route path="/" exact component={TogglesList}/>
-                <Route path="/createToggle" component={CreateToggle}/>
-                <Route path="/editToggle/:id" component={EditToggle}/>
-                <Route path="/deleteToggle/:id" component={DeleteToggle}/>
-                <Route path="/assignmentsList/:id" component={AssignmentsList}/>
+                <Route path="/create-toggle" component={CreateToggle}/>
+                <Route path="/edit-toggle/:id" component={EditToggle}/>
+                <Route path="/delete-toggle/:id" component={DeleteToggle}/>
+                <Route path="/toggle/:id/assignments" component={AssignmentsList}/>
+                <Route path="/create-assignment/toggle/:id" component={CreateAssignment}/>
+                <Route path="/edit-assignment/:assignmentId/toggle/:id" component={EditAssignment}/>
+                <Route path="/delete-assignment/:assignmentId/toggle/:id" component={DeleteAssignment}/>
+                <Route path="/search-toggles" component={SearchAssignmentsList}/>
             </div>
         </Router>
     );

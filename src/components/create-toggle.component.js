@@ -7,6 +7,7 @@ export default class CreateToggle extends Component {
 
         this.onChangeToggleName = this.onChangeToggleName.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.onCancel = this.onCancel.bind(this);
 
         this.state = {
             toggle_name: ''
@@ -28,8 +29,7 @@ export default class CreateToggle extends Component {
 
         axios.post('http://localhost:8080/toggles', newToggle)
             .then(res => {
-                console.log(res.data);
-                this.props.history.push('/');
+                this.props.history.goBack();
             })
             .catch(function (error) {
                 console.log(error);
@@ -38,6 +38,10 @@ export default class CreateToggle extends Component {
         this.setState({
             toggle_name: ''
         });
+    }
+
+    onCancel(e) {
+        this.props.history.goBack();
     }
 
     render() {
@@ -55,6 +59,7 @@ export default class CreateToggle extends Component {
                     </div>
                     <div className="form-group">
                         <input type="submit" value="Create" className="btn btn-primary" />
+                        <input type="button" value="Cancel" className="btn btn-secondary" onClick={this.onCancel}/>
                     </div>
                 </form>
             </div>

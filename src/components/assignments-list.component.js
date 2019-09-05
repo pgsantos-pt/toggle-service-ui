@@ -1,34 +1,67 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-const Assignment = props => {
+const Assignment = ({assignment, toggle}) => {
     return (
       <tr>
-          <td>{props.assignment.toggleOwner}</td>
-          <td>{props.assignment.toggleValue.toString()}</td>
+          <td className="align-middle">{assignment.toggleOwner}</td>
+          <td className="align-middle"><input type="checkbox" checked={assignment.toggleValue} readOnly/></td>
+          <td>
+              <Link to={"/edit-assignment/"+assignment.toggleAssignmentId+"/toggle/"+toggle.toggleId}>
+                  <button type="button" className="btn btn-warning">
+                      Edit
+                  </button>
+              </Link>
+          </td>
+          <td>
+              <Link to={"/delete-assignment/"+assignment.toggleAssignmentId+"/toggle/"+toggle.toggleId}>
+                  <button type="button" className="btn btn-secondary">
+                      Delete
+                  </button>
+              </Link>
+          </td>
       </tr>
     )
 }
 
-const Toggle = props => {
+const Toggle = ({toggle}) => {
     let assignments;
 
-    if(props.toggle.toggleAssignments.length>0) {
-        assignments = props.toggle.toggleAssignments.map(
+    if(toggle.toggleAssignments.length>0) {
+        assignments = toggle.toggleAssignments.map(
           function(currentAssignment, i){
-              return <Assignment assignment={currentAssignment} key={i} />;
+              return <Assignment assignment={currentAssignment} toggle={toggle} key={i} />;
       });
     }
 
     return (
         <div>
-            <label>Toggle name: {props.toggle.toggleName}</label>
+            <div>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td width={"85%"}>
+                                Toggle name: '{toggle.toggleName}'
+                            </td>
+                            <td>
+                                <Link to={"/create-assignment/toggle/"+toggle.toggleId}>
+                                    <button type="button" className="btn btn-success">
+                                        +
+                                    </button>
+                                </Link>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             <div>
                 <table className="table table-striped" style={{ marginTop: 20 }} >
                     <thead>
                         <tr>
-                            <th width={"85%"}>Toggle Owner</th>
-                            <th>Toggle Value</th>
+                            <th width={"55%"}>Toggle Owner</th>
+                            <th width={"30%"}>Toggle Active</th>
+                            <th colSpan={2}>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -53,7 +86,6 @@ export default class AssignmentsList extends Component {
         axios.get('http://localhost:8080/toggles/'+this.props.match.params.id+'/toggle-assignments')
             .then(response => {
                 this.setState({ toggle: response.data });
-                console.log(this.state.toggle);
             })
             .catch(function (error){
                 console.log(error);
@@ -75,6 +107,7 @@ export default class AssignmentsList extends Component {
         return (
             <div>
                 <h3>Toggle Assignments List</h3>
+                <br/>
                 {this.toggleList()}
             </div>
         )

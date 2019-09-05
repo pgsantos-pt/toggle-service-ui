@@ -30,7 +30,6 @@ export default class DeleteToggle extends Component {
 
         axios.delete('http://localhost:8080/toggles/'+this.props.match.params.id)
             .then(res => {
-                console.log(res.data);
                 this.props.history.push('/');
             });
 
@@ -40,7 +39,7 @@ export default class DeleteToggle extends Component {
     }
 
     onCancel(e) {
-        this.props.history.push('/');
+        this.props.history.goBack();
     }
 
     render() {
@@ -54,7 +53,7 @@ export default class DeleteToggle extends Component {
                     </div>
                     <div className="form-group">
                         <input type="submit" value="Delete" className="btn btn-primary" style={{marginRight: 20}} />
-                        <input type="button" value="Cancel" className="btn btn-secondary" onClick={this.onCancel}/>
+                        <input type="button" value="Cancel" className="btn btn-secondary" onClick={this.onCancel} />
                     </div>
                 </form>
             </div>

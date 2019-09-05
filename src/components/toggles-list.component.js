@@ -4,15 +4,27 @@ import axios from 'axios';
 
 const Toggle = props => (
     <tr>
-        <td>{props.toggle.toggleName}</td>
+        <td className="align-middle">{props.toggle.toggleName}</td>
         <td>
-            <Link to={"/editToggle/"+props.toggle.toggleId}>Edit</Link>
+            <Link to={"/toggle/"+props.toggle.toggleId+"/assignments"}>
+                <button type="button" className="btn btn-primary">
+                    Assign
+                </button>
+            </Link>
         </td>
         <td>
-            <Link to={"/deleteToggle/"+props.toggle.toggleId}>Delete</Link>
+            <Link to={"/edit-toggle/"+props.toggle.toggleId}>
+                <button type="button" className="btn btn-warning">
+                    Edit
+                </button>
+            </Link>
         </td>
         <td>
-            <Link to={"/assignmentsList/"+props.toggle.toggleId}>Assign</Link>
+            <Link to={"/delete-toggle/"+props.toggle.toggleId}>
+                <button type="button" className="btn btn-secondary">
+                    Delete
+                </button>
+            </Link>
         </td>
     </tr>
 )
