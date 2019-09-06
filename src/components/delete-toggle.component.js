@@ -30,6 +30,7 @@ export default class DeleteToggle extends Component {
 
         axios.delete('http://localhost:8080/toggles/'+this.props.match.params.id)
             .then(res => {
+                console.log(res);
                 this.props.history.push('/');
             });
 

@@ -17,18 +17,18 @@ class App extends Component {
     return (
         <Router>
             <div className="container">
-                <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
                     <Link to="/" className="navbar-brand">Toggle App</Link>
                     <div className="collpase navbar-collapse">
                         <ul className="navbar-nav mr-auto">
                             <li className="navbar-item">
-                                <Link to="/" className="nav-link">Toggles</Link>
+                                <Link to="/" className="nav-link">Toggles<span className="sr-only active">(current)</span></Link>
                             </li>
                             <li className="navbar-item">
                                 <Link to="/create-toggle" className="nav-link">Create Toggle</Link>
                             </li>
                             <li className="navbar-item">
-                                <Link to="/search-toggles" className="nav-link">Search Toggles</Link>
+                                <Link to="/search-toggles" className="nav-link">Search Assignments</Link>
                             </li>
                         </ul>
                     </div>

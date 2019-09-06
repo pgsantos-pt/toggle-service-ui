@@ -56,14 +56,9 @@ export default class CreateAssignment extends Component {
                 this.props.history.goBack();
             })
             .catch(function (error) {
+                window.alert(error.response.data.status + " - " + error.response.data.error + "\n" + error.response.data.message);
                 console.log(error.response);
             })
-
-        this.setState({
-            toggle_name: '',
-            toggle_owner: '',
-            toggle_value: false
-        });
     }
 
     onCancel(e) {

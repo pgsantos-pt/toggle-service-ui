@@ -41,12 +41,12 @@ const Toggle = ({toggle}) => {
                 <table>
                     <tbody>
                         <tr>
-                            <td width={"85%"}>
+                            <td>
                                 Toggle name: '{toggle.toggleName}'
                             </td>
                             <td>
                                 <Link to={"/create-assignment/toggle/"+toggle.toggleId}>
-                                    <button type="button" className="btn btn-success">
+                                    <button type="button" className="btn btn-success" style={{marginLeft: 15}} >
                                         +
                                     </button>
                                 </Link>

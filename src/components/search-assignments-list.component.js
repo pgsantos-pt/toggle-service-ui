@@ -29,7 +29,7 @@ const Toggle = props => {
                     <thead>
                         <tr>
                             <th width={"85%"}>Toggle Owner</th>
-                            <th>Toggle Value</th>
+                            <th>Toggle Active</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -104,7 +104,7 @@ export default class SearchAssignmentsList extends Component {
     render() {
         return (
             <div>
-                <h3>Search Toggles</h3>
+                <h3>Search Toggle Assignments</h3>
                 <br/>
                 <div>
                     <form onSubmit={this.onSubmit}>

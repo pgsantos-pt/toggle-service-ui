@@ -50,22 +50,24 @@ export default class TogglesList extends Component {
             return <div><label>There are no toggles yet</label></div>
         }
 
-        return this.state.toggles.map(
+        let displayToggles = this.state.toggles.map(
             function(currentToggle, i) {
-                return (
-                    <table className="table table-striped" style={{ marginTop: 20 }} >
-                        <thead>
-                            <tr>
-                                <th width={"85%"}>Toggle Name</th>
-                                <th colSpan={3}>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <Toggle toggle={currentToggle} key={i} />
-                        </tbody>
-                    </table>
-                )
+                return <Toggle toggle={currentToggle} key={i} />
             }
+        )
+
+        return (
+            <table className="table table-striped" style={{ marginTop: 20 }} >
+                <thead>
+                    <tr>
+                        <th width={"85%"}>Toggle Name</th>
+                        <th colSpan={3}>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {displayToggles}
+                </tbody>
+            </table>
         )
     }
 

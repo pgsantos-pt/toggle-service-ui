@@ -29,19 +29,16 @@ export default class CreateToggle extends Component {
 
         axios.post('http://localhost:8080/toggles', newToggle)
             .then(res => {
-                this.props.history.goBack();
+                this.props.history.push("/");
             })
             .catch(function (error) {
-                console.log(error);
+                window.alert(error.response.data.status + " - " + error.response.data.error + "\n" + error.response.data.message);
+                console.log(error.response);
             })
-
-        this.setState({
-            toggle_name: ''
-        });
     }
 
     onCancel(e) {
-        this.props.history.goBack();
+        this.props.history.push("/");
     }
 
     render() {
