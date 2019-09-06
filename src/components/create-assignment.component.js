@@ -37,12 +37,14 @@ export default class CreateAssignment extends Component {
 
     onChangeToggleValue(e) {
         this.setState({
-            toggle_value: e.target.value
+            toggle_value: e.target.checked
         });
     }
 
     onSubmit(e) {
         e.preventDefault();
+
+        console.log(this.state.toggle_value)
 
         const newAssignment = {
             toggleOwner: this.state.toggle_owner,
@@ -54,7 +56,7 @@ export default class CreateAssignment extends Component {
                 this.props.history.goBack();
             })
             .catch(function (error) {
-                console.log(error);
+                console.log(error.response);
             })
 
         this.setState({

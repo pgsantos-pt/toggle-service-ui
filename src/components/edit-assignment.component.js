@@ -41,7 +41,7 @@ export default class EditAssignment extends Component {
 
     onChangeToggleValue(e) {
         this.setState({
-            toggle_value: e.target.value
+            toggle_value: e.target.checked
         });
     }
 
@@ -51,8 +51,6 @@ export default class EditAssignment extends Component {
         const updateToggle = {
             toggleValue: this.state.toggle_value
         };
-
-        console.log(updateToggle);
 
         axios.put('http://localhost:8080/toggles/'+this.props.match.params.id+"/toggle-assignments/"+this.props.match.params.assignmentId, updateToggle)
             .then(res => {

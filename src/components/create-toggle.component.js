@@ -58,7 +58,7 @@ export default class CreateToggle extends Component {
                                 onChange={this.onChangeToggleName}/>
                     </div>
                     <div className="form-group">
-                        <input type="submit" value="Create" className="btn btn-primary" />
+                        <input type="submit" value="Create" className="btn btn-primary" style={{marginRight: 20}} />
                         <input type="button" value="Cancel" className="btn btn-secondary" onClick={this.onCancel}/>
                     </div>
                 </form>

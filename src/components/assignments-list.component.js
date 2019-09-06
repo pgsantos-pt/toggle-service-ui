@@ -78,11 +78,24 @@ export default class AssignmentsList extends Component {
         super(props);
 
         this.state = {
+            toggle_name: '',
+            toggle_id: 0,
             toggle: []
         };
     }
 
     componentDidMount() {
+        axios.get('http://localhost:8080/toggles/'+this.props.match.params.id)
+            .then(response => {
+                this.setState({
+                    toggle_name: response.data.toggleName,
+                    toggle_id: response.data.toggleId
+                })
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+
         axios.get('http://localhost:8080/toggles/'+this.props.match.params.id+'/toggle-assignments')
             .then(response => {
                 this.setState({ toggle: response.data });
@@ -94,11 +107,28 @@ export default class AssignmentsList extends Component {
 
     toggleList() {
         if(this.state.toggle.length===0) {
-            return <div><label>There are no assignments yet</label></div>
+            return (
+                <table>
+                    <tbody>
+                        <tr>
+                            <td width={"91.5%"}>
+                                There are no assignments for toggle '{this.state.toggle_name}' yet.
+                            </td>
+                            <td>
+                                <Link to={"/create-assignment/toggle/"+this.state.toggle_id}>
+                                    <button type="button" className="btn btn-success">
+                                        +
+                                    </button>
+                                </Link>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            )
         }
 
         return this.state.toggle.map(
-            function(currentToggle, i){
+            function(currentToggle, i) {
                 return <Toggle toggle={currentToggle} key={i} />;
         })
     }
